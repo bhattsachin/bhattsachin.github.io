@@ -1,0 +1,37 @@
+---
+layout: post
+title: Google Normalized Distance
+date: 2009-07-24 06:10:36.000000000 -07:00
+categories:
+- CS
+tags:
+- distance
+- NLP
+- semantic
+- statistics
+status: publish
+type: post
+published: true
+meta:
+  _oembed_b6516d05eb1ac85733593dd45f5f70a6: '{{unknown}}'
+  _oembed_fa8cf186b1c1d28c9854b58239758014: '{{unknown}}'
+author: 
+---
+<p style="text-align:justify;">Sometimes statistical approach simply wins over science trying to model real world. Here is an example of that. Google Normalized distance finds the relatedness between two words/concepts. this is based on number of results that comes when two are searched together to what when they are searched individually. <a href="http://en.wikipedia.org/wiki/Semantic_relatedness" target="_blank">http://en.wikipedia.org/wiki/Semantic_relatedness</a></p>
+<p>If you are bound by thinking in java. Here is a good implementation of the same. Use this jar (<a href="http://www2.informatik.hu-berlin.de/~hakenber/publ/suppl/smbm06/WBI-TM.jar" target="_blank">http://www2.informatik.hu-berlin.de/~hakenber/publ/suppl/smbm06/WBI-TM.jar</a>) to make your app finding semantic relatedness between two concepts.</p>
+<p style="text-align:justify;"><span style="text-decoration:underline;"><strong>few results</strong></span></p>
+<p style="text-align:justify;">result for Agra &amp; Taj Mahal: <span style="color:#ff0000;">0.37951525964462646</span><br />
+result for Agra &amp; Delhi: <span style="color:#ff0000;">0.43014626260551725</span></p>
+<p style="text-align:justify;">Lower the score more the semantic relatedness between those concepts.</p>
+<p style="text-align:justify;">
+<p style="text-align:justify;"><span style="text-decoration:underline;"><strong>Note:</strong></span></p>
+<p style="text-align:justify;">If you are working behind a firewall. you might need following properties to be set before you go through.</p>
+<blockquote>
+<p style="text-align:justify;">
+<p style="text-align:justify;">System.setProperty("http.proxyHost", "yourproxy");<br />
+System.setProperty("http.proxyPort", "yourport");</p>
+<p>WordSenseGoogler wordSense = new WordSenseGoogler();</p>
+<p>System.out.println("result for Agra &amp; Taj Mahal: " + wordSense.getNormalizedGoogleDistance("Agra", "TajMahal"));<br />
+System.out.println("result for Agra &amp; Delhi: " + wordSense.getNormalizedGoogleDistance("Agra", "Delhi"));</p>
+</blockquote>
+<p style="text-align:justify;"></p>

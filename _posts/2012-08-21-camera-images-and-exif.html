@@ -1,0 +1,19 @@
+---
+layout: post
+title: Camera, Images and EXIF
+date: 2012-08-21 21:11:22.000000000 -07:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author: 
+---
+<p>Last year I lost my camera during a trip up north of San Francisco. I was sad for about a week, till those memory cells faded. Suddenly it struck me why do we loose things, there should be a way to locate them, like we do we mobile phones. </p>
+<p>Another alternative is we do exhaustive search of all the images shared on internet and find if one clicked with your camera. Digital camera's store meta information in EXIF format which includes even the serial number of your camera. A serial number can uniquely identify any device. <a title="stolen camera finder" href="http://www.stolencamerafinder.com/" target="_blank">stolen camera finder</a> works on the same basis and claims to crawl all the images. However it returned zero search results when I searched for mine. Although I have published many pictures on my <a title="picasa" href="https://picasaweb.google.com" target="_blank">picasa</a> album with the same camera, this search engine fails to identify them. There can be many reasons why this approach would fail. </p>
+<p><a href="http://bhattlalit.files.wordpress.com/2012/08/exif2.png"><img class="size-full wp-image" src="/assets/exif2.png?w=563" alt="Image" /></a></p>
+<p>1. Crawlers aren't good enough. I wish <a title="image search" href="http://image.google.com" target="_blank">Google</a> to have started this service, it will help so many.</p>
+<p>2. Images with missing EXIF info. I ran a test using <a title="exif-py" href="https://github.com/ianare/exif-py" target="_blank">EXIF-py</a>, a python library on different images from Facebook, Picasa, Flickr and web and found only a very few preserved this information. Facebook seems to remove exif information from the pictures. I saw serial number for few images in picassa. In some cases only the model number is present but not serial number. </p>
+<p><a href="http://bhattlalit.files.wordpress.com/2012/08/exif1.png"><img class="size-full wp-image" src="/assets/exif1.png?w=732" alt="Image" /></a></p>
+<p>So it seems most of the images editing softwares do not write exif information. This makes it difficult to search for your lost camera by simply crawling images. So we see we need to look for a different approach to solve this problem.</p>

@@ -1,0 +1,86 @@
+---
+layout: post
+title: Plot a route on a map
+date: 2013-03-30 06:41:22.000000000 -07:00
+categories:
+- CS
+tags:
+- geo-location
+- google
+- latitude
+- map
+- route
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>Today I was working on plotting a set of geo-locations on google map. These lat/lon were part of a gpx file recorded on a motorcycle trip (auto-logs every x interval). So here is how I formulate the problem statement.</p>
+<p>[caption id="attachment_147" align="aligncenter" width="584"]<a href="http://bhattsachin.files.wordpress.com/2013/03/screen-shot-2013-03-29-at-11-45-00-pm.png"><img class="size-full wp-image-147" alt="gpx route plot on google map" src="/assets/screen-shot-2013-03-29-at-11-45-00-pm.png" width="584" height="319" /></a> route plot[/caption]</p>
+<p><span style="color:#000000;font-weight:bold;font-style:inherit;line-height:1.625;">Problem:</span></p>
+<p>Plot all geo-coordinates on a google map, centered and scaled for the selected route.</p>
+<h1>Solution:</h1>
+<ol>
+<li><span style="font-style:inherit;line-height:1.625;">Parse the gpx file &amp; extract required co-ordinates.</span></li>
+<li><span style="font-style:inherit;line-height:1.625;">Use Google Map V3 javascript library &amp; plot all the points</span></li>
+<li><span style="font-style:inherit;line-height:1.625;">Step 2 would do the plot, however the map is required to be centered. In order to find the center location find min/max of lat/lon.</span></li>
+<pre>	<code> 
+public static Double[] getCenterLatLon(List trackPoints){
+		Double[] center = new Double[2];
+		Double minLat = 999.0;
+		Double maxLat = -999.0;
+		Double minLon = 999.0;
+		Double maxLon = -999.0;
+		Double lat, lon;
+		for(TrackPoint tp:trackPoints){
+			lat = tp.getLatitude();
+			lon = tp.getLongitude();
+
+			if(minLat&gt;lat){
+				minLat = lat;
+			}else if(maxLat&lt;lat){ 
+				maxLat = lat; 
+			}
+
+			if(minLon&gt;lon){
+				minLon = lon;
+			}else if(maxLon&lt;lon){
+				maxLon = lon;
+			}
+
+		}
+		center[0] = (maxLat+minLat)/2;
+		center[1] = (maxLon+minLon)/2;
+
+		return center;
+	}</code></pre>
+<li><span style="font-style:inherit;line-height:1.625;">Now our maps needs to be scaled &amp; normalized to the size of our map canvas. This can be done by setting zoom option to the required level. On the map zoom level scales the map to by certain factor (*2). <a title="Google-maps-radius-to-zoom" href="http://jeffjason.com/2011/12/google-maps-radius-to-zoom/" target="_blank">Read here for more</a> on how google map zoom works. However above technique requires us to find the radius of our plot first. Here is a <a title="haversine formula" href="http://www.movable-type.co.uk/scripts/latlong.html" target="_blank">detailed writeup</a> on understanding relation between earth's curvature and lat/lons. We use <a title="Haversine formula" href="http://en.wikipedia.org/wiki/Haversine_formula" target="_blank">Haversine forumla</a> to compute our distance in miles.
+<p></span>
+<pre><code>
+public static double distFrom(double lat1, double lng1, double lat2, double lng2) {
+	double earthRadius = 3958.75;
+	double dLat = Math.toRadians(lat2-lat1);
+	double dLng = Math.toRadians(lng2-lng1);
+	double sindLat = Math.sin(dLat / 2);
+	double sindLng = Math.sin(dLng / 2);
+	double a = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
+	            * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));
+	double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	double dist = earthRadius * c;
+
+	return dist;
+}
+
+</code></pre>
+<p>Above snippet is taken from <a title="working-with-latitude-longitude" href="http://stackoverflow.com/questions/120283/working-with-latitude-longitude-values-in-java" target="_blank">here</a>.</li>
+<li><span style="font-style:inherit;line-height:1.625;"><span style="font-style:inherit;line-height:1.625;">Once we have the radius, we can translate this into a zoom level on map. I found it kind of an approximation technique.</span></span>
+<pre><code>
+public static long googleRadiusToZoomLevel(Double radius){
+	return Math.round(16-Math.log(radius)/Math.log(2));
+}
+</code></pre>
+</li>
+<li><span style="font-style:inherit;line-height:1.625;">We are all set. Additionally you may want to scale size of your markers with change in zoom level. <a title="resize-markers-on-map-depending-on-zoom" href="http://stackoverflow.com/questions/3281524/resize-markers-depending-on-zoom-google-maps-v3" target="_blank">Here is one way of doing it</a>.</span></li>
+</ol>

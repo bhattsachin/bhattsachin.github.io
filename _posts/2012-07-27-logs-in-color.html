@@ -1,0 +1,20 @@
+---
+layout: post
+title: Logs in Color
+date: 2012-07-27 21:15:08.000000000 -07:00
+categories: []
+tags:
+- color
+- logs
+- tail
+status: publish
+type: post
+published: true
+meta: {}
+author: 
+---
+<p>Here is a cool technique to see your console logs in color. Save your eyes from scanning every line for that word "SEVERE" by running this.</p>
+<pre>tail -f catalina.out | perl -pe 's/.*SEVERE.*/\e[1;31m$&amp;\e[0m/g'
+
+</pre>
+<p><a href="http://bhattsachin.files.wordpress.com/2012/07/2012-07-27_1400.png"><img class="aligncenter size-full wp-image-107" title="2012-07-27_1400" src="/assets/2012-07-27_1400.png" alt="console" width="720" height="331" /></a></p>

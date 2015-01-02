@@ -1,0 +1,30 @@
+---
+layout: post
+title: Why is it difficult for machines to comprehend images?
+date: 2012-10-28 19:49:06.000000000 -07:00
+categories:
+- CS
+tags:
+- computer vision
+- image processing
+- video
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  tagazine-media: a:7:{s:7:"primary";s:60:"http://bhattsachin.files.wordpress.com/2012/10/occluded.jpeg";s:6:"images";a:2:{s:56:"http://bhattsachin.files.wordpress.com/2012/10/room.jpeg";a:6:{s:8:"file_url";s:56:"http://bhattsachin.files.wordpress.com/2012/10/room.jpeg";s:5:"width";i:744;s:6:"height";i:494;s:4:"type";s:5:"image";s:4:"area";i:367536;s:9:"file_path";b:0;}s:60:"http://bhattsachin.files.wordpress.com/2012/10/occluded.jpeg";a:6:{s:8:"file_url";s:60:"http://bhattsachin.files.wordpress.com/2012/10/occluded.jpeg";s:5:"width";i:1296;s:6:"height";i:968;s:4:"type";s:5:"image";s:4:"area";i:1254528;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:3;s:6:"author";s:7:"4548861";s:7:"blog_id";s:7:"4313280";s:9:"mod_stamp";s:19:"2012-10-28
+    19:49:06";}
+author: 
+---
+<p style="text-align:justify;">We have done a considerable work with words. There are search engines where we can find a match in billions of documents in a blink. However the same is not true with images or videos. I think the reason is inherent in the representation.</p>
+<p>A language consists of characters, words and some basic rules. There are a finite number of characters used in representation of any language. A dictionary would contain most of the words. Each word has a meaning locally, and contextually when associated with other words. So in a way we have traced a written language in its structural form and given a similar encoding into machines. So the problem is deemed solved.</p>
+<p>However with images, there are no fixed set of rules at macroscopic level, it is safe to say there exists an infinite set. On a broader level we are considering few categories right now, like trees, people, cars, and houses and trying to label them. Now the question is why it is inherently difficult. In images how do we tell if two visual references of an object refer to same object i.e. two images of a room each having a bed, pillow, windows and carpet.</p>
+<p style="text-align:justify;"><a href="http://bhattsachin.files.wordpress.com/2012/10/room.jpeg"><img class="aligncenter size-full wp-image-121" title="room" alt="bed pillow window" src="/assets/room.jpeg" height="387" width="584" /></a><br />
+How does the machine label it as a room, bed or pillow. One is to identify/recognize each object independently using features encoded in the machine model. Say shape of an object. e.g. a chair will have 4 legs and back support. Second is using information from spatial domain. The object in itself will be difficult to recognize. However in relation to other objects it can be identified. e.g. a pillow will have a rectangular shape in a 2D image, however when we see a room and a pillow in the bed our confidence that it is a pillow increases. Now say there is a book and a pillow on the bed. By further encoding sharpness of edges, we can deduce or distinguish a book from pillow. Scale is another feature; say a pillow will have a proportional size with respect to its surrounding object.</p>
+<p>For a moment, let us think on how we see things. As we grow, we create a prototype of the world as a visual reference in our head. We see cars, trucks, bikes when we go on the road. Next time we see a road we know what all we can anticipate. If we go inside a house, there are number of objects we can expect. So when we see an image there is a limited set of objects which need to be mapped or matched against.</p>
+<p>Essentially in our machine models we should be making use of this context. But for using this context we should have a similar model in our machine. Say a prototype of the world like a 3D computer game where each object has enough details available.</p>
+<p>[caption id="" align="aligncenter" width="800"]<img title="3 D representation" alt="" src="/assets/5071b8049c13f04a6bbe7e41c4333cd6.jpg" height="441" width="800" /> A generalized representation of the world with enough details. Image from : http://www.3dcity-world.com/3dcity/[/caption]</p>
+<p style="text-align:justify;">Sometimes objects are occluded or only partly visible. Say a table and chair</p>
+<p style="text-align:justify;"><a href="http://bhattsachin.files.wordpress.com/2012/10/occluded.jpeg"><img class="aligncenter size-full wp-image-122" title="occluded" alt="" src="/assets/occluded.jpeg" height="436" width="584" /></a>With a context it is much easier to predict. Say we a see a room with a car in it. If we see a car outside the window, on a road (and sufficient information available that it is outside), it is a real car. However if it is inside the room, it must be toy car (a miniature model), or the room is a garage. In that case the room will not have the things we see in a normal room and our model should choose garage.</p>
+<p style="text-align:justify;">On a low level, digital images are still a group of pixels with each pixel encoding some grayscale value. We can iterate through an image by running two loops, one for each height and width. During the time we run that loop we have to do all our matching/recognition and detection to make machines understand our world and see the things the way humans do.</p>

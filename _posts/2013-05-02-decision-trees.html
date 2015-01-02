@@ -1,0 +1,34 @@
+---
+layout: post
+title: Decision Trees
+date: 2013-05-02 05:07:58.000000000 -07:00
+categories:
+- CS
+tags:
+- decision trees
+- entropy
+- machine learning
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  _oembed_4ef36a52a3b1dcdf189d6a04da7e6de2: '{{unknown}}'
+  _oembed_d71e66ffbd445c206f0ea458032be51a: '{{unknown}}'
+  _oembed_0d7c83634adda55a8065aee04b0a6042: '{{unknown}}'
+  _oembed_c14d19885acee7e094436500ae61aaa5: '{{unknown}}'
+  _oembed_40e3c366977c71c7db9d8a24ff6923fb: '{{unknown}}'
+  _oembed_538a090c86ba67a8bd69a635856e0276: '{{unknown}}'
+author: 
+---
+<p style="text-align:justify;">Have you played that guessing game where they ask you 20 questions and guess what are you thinking about <a href="http://en.akinator.com/personnages/" target="_blank">http://en.akinator.com/personnages/</a></p>
+<p style="text-align:justify;">In Decision trees we use a criteria to split our data into parts and finally classify the sequence into a class. Like in <a href="http://en.akinator.com/personnages/" target="_blank">Akinator</a> if they ask 20 question and each question has 2 options (either yes or no) we can classify/find 2^20 people at best.</p>
+<p><a href="http://bhattsachin.files.wordpress.com/2013/05/screen-shot-2013-05-02-at-12-57-25-am.png"><img class="aligncenter size-full wp-image-158" alt="akinator" src="/assets/screen-shot-2013-05-02-at-12-57-25-am.png" width="584" height="431" /></a></p>
+<p style="text-align:justify;">Questions are asked in a way which would result in best split. Say if we have 10 people and we want this tree to have minimum depth, we would like to ask a question which would split this data into equal halves. In Machine learning terminology we call this Entropy or Information gain. Entropy is high when both options are equally likely. There are different ways in which this entropy function can be computed eg. variance entropy, gini, impurity. In layman's term this function just returns how good our function will split the data at a particular node.</p>
+<p style="text-align:justify;">Algorithms like CART and ID3 are popular for solving tree based problems. This technique is however useful when we have nominal data, ie we have no way to measure or relate two values in terms of distance. They are incomparable. Like in a popular toy example they say given chances of rain, sun how likely one will go out to play. We enumerate all possible cases and respective values associated with those combinations.</p>
+<p>[caption id="attachment_157" align="aligncenter" width="511"]<a href="http://bhattsachin.files.wordpress.com/2013/05/dt.png"><img class="size-full wp-image-157" alt="decision tree enumeration for toy example" src="/assets/dt.png" width="511" height="495" /></a> decision tree enumeration for toy example[/caption]</p>
+<p style="text-align:justify;">Then we create a tree where our columns in the table becomes questions we ask at each node. Sequence in which we ask questions is learned from training sequence.</p>
+<p style="text-align:justify;">Follow this tutorial for computational example<br />
+<a href="http://www.cise.ufl.edu/~ddd/cap6635/Fall-97/Short-papers/2.htm" target="_blank">http://www.cise.ufl.edu/~ddd/cap6635/Fall-97/Short-papers/2.htm</a></p>
+<p style="text-align:justify;">For working code in Java<br />
+<a href="https://github.com/saebyn/java-decision-tree.git" target="_blank">https://github.com/saebyn/java-decision-tree.git</a></p>
