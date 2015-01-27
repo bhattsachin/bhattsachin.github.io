@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Managing GitHub and Bitbucket accounts on one machine
+title: "Managing GitHub and Bitbucket accounts on one machine"
 date: 2015-01-26 22:26:10
 ---
 I have multiple bitbucket accounts and one on github. I started to notice that my commits are not getting registered on github. 
@@ -10,7 +10,7 @@ This problem can be solved by assigning user.email and names to each repository.
 
 Appending the following information solved this for me.
 
-{% highlight %}
+{% highlight ruby %}
 vi git_repo/.git/config
 
 [user]
