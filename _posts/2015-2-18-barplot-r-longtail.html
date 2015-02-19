@@ -1,0 +1,42 @@
+---
+layout: post
+title: "Barplot Longtail"
+date: 2015-02-18 22:15:10
+---
+When plotting lot of values on a barplot it's very difficult to show all the names on x-axis.
+
+The following code is for reference.
+
+{% highlight R %}
+universitiesFile <- tempfile()
+download.file("https://inventory.data.gov/dataset/032e19b4-5a90-41dc-83ff-6e4cd234f565/resource/38625c3d-5388-4c16-a30f-d105432553a4/download/postscndryunivsrvy2013dirinfo.csv",destfile=universitiesFile, method="curl")
+read.csv(universitiesFile)
+universities<-read.csv('post-secondary-univ.csv')
+head(universities)
+summary(universities$STABBR)
+universityStates<-universities$STABBR
+head(universityStates)
+universityStates<-c(universities$STABBR, universities$INSTNM)
+head(universityStates)
+universityStates<-universities[,c("STABBR", "INSTNM")]
+head(universityStates)
+names(universityStates)<-c("state", "institute")
+head(universityStates)
+aggregate(universityStates$state, by=list(universityStates$state), FUN=length)
+universitiesByState<-aggregate(universityStates$state, by=list(universityStates$state), FUN=length)
+universitiesByState<-universitiesByState[order(-universitiesByState$x),]
+head(universitiesByState)
+barplot(universitiesByState$x, names.arg=universitiesByState$Group.1, las=2, col=terrain.colors(10), cex.names=0.8, main="Institutions per state", xlab="state", ylab="Number of institutions", width=10)
+
+{% endhighlight %}
+
+Tweak the following attributes as per number of elements and plot size </br>
+cex.names={num1} </br>
+las={num2} </br>
+{% highlight R %}
+barplot(universitiesByState$x, names.arg=universitiesByState$Group.1, las=2, col=terrain.colors(10), cex.names=0.8, main="Institutions per state", xlab="state", ylab="Number of institutions", width=10)
+{% endhighlight %}
+
+Result
+
+<img class="aligncenter size-full" alt="barplot" src="/assets/institutions.png" width="800" height="500" />
