@@ -1,0 +1,48 @@
+<title>Random Selection</title>
+<style>
+li:first-child {
+    color: red;
+}
+a {
+  text-decoration:none;
+  color:gray;
+}
+input{
+	font-size: 40px;
+}
+</style>
+</head>
+<body>
+<center style="font-size:40px;">
+<h1>
+<a href="#" onclick="randomGenerator(2);">2, </a>
+<a href="#" onclick="randomGenerator(3);">3, </a>
+<a href="#" onclick="randomGenerator(4);">4, </a>
+<a href="#" onclick="randomGenerator(5);">5, </a>
+<a href="#" onclick="randomGenerator(10);">10, </a>
+<a href="#" onclick="randomGenerator(13);">13</a>
+<div><input id="customInput" type="text" size="2"></input><input type="button" value="go" onclick="randomGenerator(987);"></input></div>
+</h1>
+<h1><div id="randValue" style="color:green;font-size:100px;">#</div></h1>
+
+<ul style="font-size:12px;list-style-type:none" id="history"></ul>
+</center>
+</body>
+<script type="text/javascript">
+
+function randomGenerator(input){
+	if(input==987){
+		input = document.getElementById("customInput").value
+	}
+	var num = Math.random()*input + 1;
+	document.getElementById("randValue").innerHTML=Math.floor(num);
+	var node = document.createElement("LI");
+    var textnode = document.createTextNode(Math.floor(num) + ' - ' + Date());
+    node.appendChild(textnode);
+    var list =  document.getElementById("history");
+    list.insertBefore(node, list.childNodes[0]);
+}
+
+
+</script>
+</body>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>SPARQL Query Generation from NL</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://bhattsachin.me/CS/2009/07/08/sparql-query-generation-from-nl.html">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">bhattsachin</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">SPARQL Query Generation from NL</h1>
+    <p class="post-meta">Jul 8, 2009 • {"_oembed_660723708190557780eb6a244c0d3778"=>"{{unknown}}", "_oembed_e513ab9cc430a03acace804cba2d9b4e"=>"{{unknown}}", "_oembed_c60681cec1106a312fcfaf23a80783be"=>"{{unknown}}", "_oembed_b6e3563352a2912ea48346299642038d"=>"{{unknown}}", "_oembed_4cc08088bddd18afb367b215d3ff69f2"=>"{{unknown}}", "_oembed_dc1ae21e645429e5035d50b0b405d0e7"=>"{{unknown}}", "_oembed_1f181758ce07030bc4b678239181b729"=>"{{unknown}}", "_oembed_7de4a362e4b22bfece976d9b30ae10fa"=>"{{unknown}}", "_oembed_f3aaed9497b82e4877c102de79b130d6"=>"{{unknown}}", "_oembed_efe7b41f222b3653ed0e3456588a126f"=>"{{unknown}}", "_oembed_4808465fcea1aed9baff3cf11757a284"=>"{{unknown}}", "_oembed_8557c29305275fc0a829c30fb8f61873"=>"{{unknown}}", "_oembed_01922ed8a6aa5c7354b4ebaefe4406ce"=>"{{unknown}}", "_oembed_023d7ba84dbdb2d624e3144aeb1e6dca"=>"{{unknown}}", "_oembed_b0345d7eb040e5ab099f8d42beb95e65"=>"{{unknown}}", "_oembed_d8972927965fa53efeecff051d50b22e"=>"{{unknown}}", "_oembed_cafb61509a045bde07dd23115ceea38e"=>"{{unknown}}", "_oembed_3bd7da125da0380035cc1b2cf6c959e5"=>"{{unknown}}", "_oembed_4023afb156902eccfd52c765aeed650f"=>"{{unknown}}", "_oembed_51d6d262f183f7c275e9baea93bc2b92"=>"{{unknown}}", "_oembed_60b28dddcba5beb2e376dfd6d2b58263"=>"{{unknown}}", "_oembed_6ebb2b3548827289d0e8edc773f92572"=>"{{unknown}}", "_oembed_b52601009a422d785b144b8e4ef45275"=>"{{unknown}}", "_oembed_17e82e0400d1bd234598fa33f1e7e46a"=>"{{unknown}}", "_oembed_4d5a1cb0e20ae968bc133e8f081c4ff4"=>"{{unknown}}", "_oembed_271c5f61104a1f81f3872efccedc44c7"=>"{{unknown}}", "_oembed_fd41f37d359f7076e763ba29ef5e853a"=>"{{unknown}}", "_oembed_1a46a479f0ec577de34cb091e4509db2"=>"{{unknown}}", "_oembed_f3e3a1b30b8c63b59934f5e32a051313"=>"{{unknown}}", "_oembed_e65f2845e46008f71e0d72b2f3b0048a"=>"{{unknown}}", "_oembed_036dd7cda087280e29c3518f757fc14d"=>"{{unknown}}", "_oembed_051ce81c81e12eefaba77bd5dd1cdc12"=>"{{unknown}}", "_oembed_4fc764de98a1f51d49ab64121f7a67a6"=>"{{unknown}}", "_oembed_55a538f44f84910837a211210dcbb5a8"=>"{{unknown}}"}</p>
+  </header>
+
+  <article class="post-content">
+    <p>I been searching for this utility on Google &amp; Delicious. But sometimes these crawlers &amp; taggers fail to find information which a human being can do if they have patience to read a paper, which others have written.</p>
+<p>After a failed effort on writing a partial query converter on my own, today i found a paper which mentions few good tools which can do this for me.</p>
+<p>If you are also looking for any such requirement. please visit following links. AquaLog is for people who think in java.</p>
+<p>http://technologies.kmi.open.ac.uk/aqualog/</p>
+<p>http://alumni.media.mit.edu/~mueller/papers/tt.html</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">bhattsachin</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>bhattsachin</li>
+          <li><a href="mailto:mail@bhattsachin.me">mail@bhattsachin.me</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/bhattsachin">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">bhattsachin</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/bhattsachin">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">bhattsachin</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+<script type="text/javascript" src="/assets/js/readingTime.min.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image');
+    $window.on('scroll', function() {
+      var top = $window.scrollTop();
+
+      if (top < 0 || top > 1500) { return; }
+      $image
+        .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+        .css('opacity', 1-Math.max(top/700, 0));
+    });
+    $window.trigger('scroll');
+
+    var height = $('.article-image').height();
+    $('.post-content').css('padding-top', height + 'px');
+
+    $('a[href*=#]:not([href=#])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+       && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html,body').animate({ scrollTop: target.offset().top }, 500);
+          return false;
+        }
+      }
+    });
+  });
+}(jQuery));
+</script>
+
+
+
+  </body>
+
+</html>
